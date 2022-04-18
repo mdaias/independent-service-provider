@@ -7,7 +7,7 @@ const Header = () => {
         <>
             <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="#home">Mr. Tourist Guide</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
@@ -16,7 +16,9 @@ const Header = () => {
                             <Nav.Link as={Link} to='/blogs'>Blogs</Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets">More deets</Nav.Link>
+                        <Nav.Link as={Link} to="/checkout">
+                            Checkout
+                            </Nav.Link>
                             <Nav.Link as={Link} to="/login">
                                 Log In
                             </Nav.Link>

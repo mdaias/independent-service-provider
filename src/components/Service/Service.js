@@ -5,15 +5,17 @@ const Service = ({ service }) => {
     const { name,picture,description } = service;
     return (
         <div className='col-md-4 col-sm-6 col-12'>
-            <Card style={{ width: '18rem' }}>
+            <Card className='h-100'>
                 <Card.Img variant="top" src={picture} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
                         {description}
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    </Card.Text> 
                 </Card.Body>
+                <div className="card-footer">
+                <Button className='w-100' variant="primary">Go somewhere</Button>
+                </div>
             </Card>
         </div>
     );
