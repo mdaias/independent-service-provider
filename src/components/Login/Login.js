@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Login = () => {
+    const navigate =useNavigate();
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+
+      if(user){
+          navigate('/checkout')
+      }
+    const navigateRegistration = () =>{
+        navigate('/registration')
+    }
+
+    const handleSubmit = event =>{
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        console.log(email,password)
+        signInWithEmailAndPassword(email,password)
+    }
+
+
     return (
         <div>
             <h1 className='text-center mt-5 text-success'>Pleace Log In</h1>
             <div className="container mt-5">
-                <Form className='shadow mx-auto border border-3 p-3 w-50'>
+                <Form onSubmit={handleSubmit} className='shadow mx-auto border border-3 p-3 w-50'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className='text-primary fs-4 fw-bold'>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" required />
+                        <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -18,12 +47,12 @@ const Login = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className='text-primary fs-4 fw-bold'>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" required />
+                        <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                     </Form.Group>
                     <Button variant="primary" className='w-100' type="submit">
                         Submit
                     </Button>
-                    <p className='text-center mt-3 fw-bold'>Are you new user?<Link className='text-decoration-none text-danger fs-6 fw-bold ms-3' to='/registration'>Register</Link></p>
+                    <p className='text-center mt-3 fw-bold'>Are you new user?<Link className='text-decoration-none text-danger fs-6 fw-bold ms-3' to='/registration' onClick={navigateRegistration}>Register</Link></p>
                 </Form>
             </div>
         </div>
