@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer';
 import Services from './components/Home/Services/Services';
 import About from './components/About/About';
 import Blogs from './components/Blogs/Blogs';
+import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path='/services' element={<Services></Services>}></Route>
           <Route path='/about' element={<About></About>}></Route>
           <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+          <Route path='login' element={<Login></Login>}></Route>
+          <Route path='registration' element={<Registration></Registration>}></Route>
 
         </Routes>
        
