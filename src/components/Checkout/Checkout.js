@@ -4,6 +4,7 @@ const Checkout = () => {
     return (
         <div>
             <h1>its secret page</h1>
+            
         </div>
     );
 };
