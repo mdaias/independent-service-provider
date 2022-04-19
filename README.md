@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mr Turist Guide [Live Site Link](https://peaceful-gaufre-0a9e02.netlify.app/).
 
 ## Available Scripts
 
