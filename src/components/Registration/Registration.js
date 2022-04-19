@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Registration = () => {
     const [
@@ -10,7 +11,7 @@ const Registration = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
 
     const navigate = useNavigate();
@@ -41,17 +42,18 @@ const Registration = () => {
     const handleCreateUser = event => {
         event.preventDefault();
         console.log(name, email, password, confirmPassword)
-        createUserWithEmailAndPassword(email,password)
+        createUserWithEmailAndPassword(email, password)
     }
 
-    if(user){
+    if (user) {
         navigate('/checkout')
     }
 
     return (
-        <div className="container mt-5">
-            <Form onSubmit={handleCreateUser} className='shadow mx-auto border border-3 p-3 w-50'>
-                <h1 className='text-center text-success'>Pleace Registration</h1>
+        <div className="container mt-5 shadow mx-auto border border-3 p-3 w-50">
+
+            <Form onSubmit={handleCreateUser}>
+                <h1 className='text-center text-primary'>Registration</h1>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label className='text-primary fs-4 fw-bold'>Your Name</Form.Label>
                     <Form.Control onBlur={handleNameBlur} type="text" placeholder="Enter your name" required />
@@ -75,6 +77,7 @@ const Registration = () => {
                 </Button>
                 <p className='text-center mt-3 fw-bold'>Already have a account?<Link className='text-decoration-none text-danger fs-6 fw-bold ms-3' to='/login' onClick={navigateLogin}>Log In</Link></p>
             </Form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

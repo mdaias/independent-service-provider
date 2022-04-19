@@ -16,7 +16,7 @@ const Service = ({ service }) => {
                     </Card.Text>
                 </Card.Body>
                 <div className="d-grid w-100 gap-2 col-6 mx-auto">
-                    <Button as={Link} to='/checkout' className="btn fw-bold btn-primary" type="button">Button</Button>
+                    <Button as={Link} to='/checkout' className="btn fw-bold btn-primary" type="button">Hire me</Button>
                 </div>
             </Card>
         </div>
