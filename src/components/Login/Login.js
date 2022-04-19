@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
@@ -19,6 +20,15 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    let errorElement;
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message} {error?.message}</p>
+    }
+  if (loading) {
+    return <Loading></Loading>
+  }
 
     if (user) {
         navigate(from, { replace: true });
@@ -56,6 +66,7 @@ const Login = () => {
                     <Button variant="primary" className='w-100' type="submit">
                         Submit
                     </Button>
+                    {errorElement}
                     <p className='text-center mt-3 fw-bold'>Are you new user?<Link className='text-decoration-none text-danger fs-6 fw-bold ms-3' to='/registration' onClick={navigateRegistration}>Register</Link></p>
                 </Form>
                 <SocialLogin></SocialLogin>

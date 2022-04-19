@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../Loading/Loading';
 
 const Registration = () => {
     const [
@@ -21,6 +22,15 @@ const Registration = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     // const [error,setError] =useState('');
+
+    let errorElement;
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message} {error?.message}</p>
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     const navigateLogin = () => {
         navigate('/login')
@@ -75,6 +85,7 @@ const Registration = () => {
                 <Button variant="primary" className='w-100' type="submit">
                     Submit
                 </Button>
+                {errorElement}
                 <p className='text-center mt-3 fw-bold'>Already have a account?<Link className='text-decoration-none text-danger fs-6 fw-bold ms-3' to='/login' onClick={navigateLogin}>Log In</Link></p>
             </Form>
             <SocialLogin></SocialLogin>
